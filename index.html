@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisasterAlert - Emergency Management</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DisasterAlert">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Local Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-indicator">
+                <div class="status-dot" id="networkStatus"></div>
+                <span id="networkText">Online</span>
+            </div>
+            <div id="currentTime"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>DisasterAlert</h1>
+                <p>Emergency Management System</p>
+            </div>
+
+            <!-- Alert Banner -->
+            <div class="alert-banner" id="alertBanner">
+                <div class="alert-text" id="alertText">High Risk Alert</div>
+                <div class="alert-details" id="alertDetails">Flood warning in your area. Move to higher ground immediately.</div>
+            </div>
+
+            <!-- Location Info -->
+            <div class="location-info">
+                <div class="location-text" id="locationText">📍 Getting your location...</div>
+                <div class="coordinates" id="coordinates">Lat: --, Lng: --</div>
+            </div>
+
+            <!-- SOS Section -->
+            <div class="sos-section">
+                <button class="sos-button" id="sosButton">
+                    SOS
+                </button>
+                <div class="sos-status" id="sosStatus">Tap for Emergency Help</div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn" onclick="toggleMap()">
+                    <span class="action-icon">🗺️</span>
+                    <span class="action-text">Emergency Map</span>
+                </button>
+                <button class="action-btn" onclick="showResources()">
+                    <span class="action-icon">🏥</span>
+                    <span class="action-text">Nearby Help</span>
+                </button>
+                <button class="action-btn" onclick="showAlerts()">
+                    <span class="action-icon">⚠️</span>
+                    <span class="action-text">Active Alerts</span>
+                </button>
+                <button class="action-btn" onclick="shareLocation()">
+                    <span class="action-icon">📍</span>
+                    <span class="action-text">Share Location</span>
+                </button>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section" id="mapSection" style="display: none;">
+                <div class="map-header">
+                    <span>Emergency Resources</span>
+                    <button onclick="toggleMap()" style="background: none; border: none; color: white; font-size: 20px;">✕</button>
+                </div>
+                <div id="map"></div>
+                <div class="resources-grid">
+                    <div class="resource-item hospital">
+                        <span class="resource-icon">🏥</span>
+                        <div class="resource-text">Hospitals</div>
+                    </div>
+                    <div class="resource-item police">
+                        <span class="resource-icon">👮</span>
+                        <div class="resource-text">Police</div>
+                    </div>
+                    <div class="resource-item safe-zone">
+                        <span class="resource-icon">🛡️</span>
+                        <div class="resource-text">Safe Zones</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="sosModal">
+        <div class="modal-content">
+            <h3>⚠️ SOS Alert</h3>
+            <p>Your emergency location and details will be shared with nearby rescue organizations. Are you sure?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" onclick="closeModal('sosModal')">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmSOS()">Send SOS</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <h3>🚨 Active Disaster Alerts</h3>
+            <div id="alertsList">
+                <p>• Flood Warning - Central District</p>
+                <p>• High Wind Advisory - Northern Area</p>
+                <p>• Evacuation Notice - Riverside Zone</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="closeModal('alertModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Local Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

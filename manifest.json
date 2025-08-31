@@ -1,0 +1,109 @@
+{
+  "name": "DisasterAlert - Emergency Management System",
+  "short_name": "DisasterAlert",
+  "description": "Emergency disaster management app with SOS features, real-time alerts, and offline maps",
+  "version": "1.0.0",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#667eea",
+  "background_color": "#764ba2",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["safety", "utilities", "productivity"],
+  "screenshots": [
+    {
+      "src": "screenshots/screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "platform": "narrow"
+    },
+    {
+      "src": "screenshots/screenshot2.png",
+      "sizes": "720x540",
+      "type": "image/png",
+      "platform": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Send SOS",
+      "short_name": "SOS",
+      "description": "Send emergency SOS alert",
+      "url": "/?action=sos",
+      "icons": [
+        {
+          "src": "icons/sos-icon.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "View Map",
+      "short_name": "Map",
+      "description": "View emergency resources map",
+      "url": "/?action=map",
+      "icons": [
+        {
+          "src": "icons/map-icon.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "permissions": [
+    "geolocation",
+    "notifications",
+    "vibrate"
+  ],
+  "serviceworker": {
+    "src": "sw.js",
+    "scope": "/",
+    "update_via_cache": "imports"
+  }
+}
